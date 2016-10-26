@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="your full name"
+       android:singleLine="true"
+       android:ems="10"
+       android:layout_marginTop="20dp"
+       android:textAlignment="center"
+       android:id="@+id/editText"
+         />
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Organization/Company's Name"
+       android:singleLine="true"
+       android:ems="10"
+       android:textAlignment="center"
+       android:id="@+id/editText2"
+       />
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Designation"
+       android:singleLine="true"
+       android:ems="10"
+       android:textAlignment="center"
+       android:id="@+id/editText3"
+         />
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Email id"
+       android:singleLine="true"
+       android:ems="10"
+       android:textAlignment="center"
+       android:id="@+id/editText4"
+         />
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Contact No or Mobile No"
+       android:singleLine="true"
+       android:ems="10"
+       android:textAlignment="center"
+       android:id="@+id/editText5"
+         />
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Complete Postal Address"
+       android:singleLine="true"
+       android:ems="10"
+       android:textAlignment="center"
+       android:id="@+id/editText6"
+         />
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="City"
+       android:singleLine="true"
+       android:ems="10"
+       android:textAlignment="center"
+       android:id="@+id/editText7"
+         />
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="State"
+       android:singleLine="true"
+       android:ems="10"
+       android:textAlignment="center"
+       android:id="@+id/editText8"
+         />
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Pin Code"
+       android:singleLine="true"
+       android:ems="10"
+       android:textAlignment="center"
+       android:id="@+id/editText9"
+         />
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Organization or Company Website if any"
+       android:singleLine="true"
+       android:ems="10"
+       android:textAlignment="center"
+       android:id="@+id/editText10"
+        />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Should we put your organization's logo on card ?"
+            android:singleLine="true"
+            android:ems="10"
+            android:textAlignment="center"
+            android:id="@+id/editText11"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Visiting card design"
+            android:singleLine="true"
+            android:ems="10"
+            android:textAlignment="center"
+            android:id="@+id/editText12"
+            />
+
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:src="@drawable/one"/>
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:src="@drawable/two"/>
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:src="@drawable/three"/>
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:src="@drawable/four"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:padding="5dp"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="save data"
+            android:id="@+id/button1"
+            android:onClick="savedata"
+            android:layout_gravity="center_horizontal"/>
+
+       <Button
+       android:layout_width="200dp"
+       android:layout_height="wrap_content"
+       android:text="ClickNext"
+       android:id="@+id/button"
+       android:onClick="shownextpage"
+       android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
