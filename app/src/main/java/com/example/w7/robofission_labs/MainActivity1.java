@@ -76,13 +76,15 @@ public class MainActivity1 extends Activity {
     }
 
     public void sendimage(View view){
-        Intent email = new Intent(Intent.ACTION_SEND);
+        /*Intent email = new Intent(Intent.ACTION_SEND);
         email.setType("image/jpeg");
         email.putExtra(Intent.EXTRA_EMAIL, new String[]{"suhas@robofissionlabs.in"});
         email.putExtra(Intent.EXTRA_SUBJECT, "Order Free Visiting Card");
         //email.putExtra(Intent.EXTRA_TEXT, "message");
         email.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + root + "/Robofission/sampleimage.jpg" ));
-        startActivity(Intent.createChooser(email, "Choose Email App:"));
+        startActivity(Intent.createChooser(email, "Choose Email App:"));*/
+        Intent intent= new Intent(this,MailSenderActivity.class);
+        startActivity(intent);
 
     }
 }
