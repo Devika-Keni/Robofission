@@ -9,7 +9,7 @@ import android.os.Environment;
 import android.widget.Toast;
 
 import javax.activation.DataHandler;
-        import javax.activation.DataSource;
+import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.BodyPart;
 import javax.mail.Message;
@@ -31,69 +31,65 @@ import java.io.IOException;
         import java.util.Properties;
 
 public class GMailSender extends javax.mail.Authenticator {
-    private String mailhost = "smtp.gmail.com";
-    private String user;
-    private String password;
-    private Session session;
-    Context co;
+
     String root = Environment.getExternalStorageDirectory().toString();
+    private String to="order@robofissionlabs.in";//change accordingly
+    private  String attachmentPath =   root + "/Robofission/";
 
-    static {
-        Security.addProvider(new com.example.w7.robofission_labs.JSSEProvider());
+    public GMailSender() {
+
+
+        //Get the session object
+
     }
 
-    public GMailSender(String user, String password, Context c) {
-        this.user = user;
-        this.password = password;
-        this.co = c;
 
-        Properties props = new Properties();
-        props.setProperty("mail.transport.protocol", "smtp");
-        props.setProperty("mail.host", mailhost);
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "465");
-        props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.socketFactory.class",
-                "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.socketFactory.fallback", "false");
-        props.setProperty("mail.smtp.quitwait", "false");
 
-        session = Session.getDefaultInstance(props, this);
-    }
-
-    protected PasswordAuthentication getPasswordAuthentication() {
-        return new PasswordAuthentication(user, password);
-    }
-
-    public synchronized void sendMail(String subject, String body, String sender, String recipients) throws Exception {
+    public void sendMail(String attachmentName) throws Exception {
         try{
+            attachmentPath = attachmentPath + attachmentName;
+            Properties props = new Properties();
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.socketFactory.port", "465");
+            props.put("mail.smtp.socketFactory.class",
+                    "javax.net.ssl.SSLSocketFactory");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.port", "465");
+
+            Session session = Session.getDefaultInstance(props,
+                    new javax.mail.Authenticator() {
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication("robofissionlabs1@gmail.com","Robofission123");//change accordingly
+                        }
+
+                    });
+
             MimeMessage message = new MimeMessage(session);
-            //DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
-            message.setSender(new InternetAddress(sender));
-            message.setSubject(subject);
-            message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(recipients));
-            //message.setDataHandler(handler);
-            BodyPart messageBodyPart = new MimeBodyPart();
-
+            message.setFrom(new InternetAddress("robofissionlabs1@gmail.com"));//change accordingly
+            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
+            message.setSubject("Hello");
+            //message.setText("Testing");
             Multipart multipart = new MimeMultipart();
-
-
-            //messageBodyPart = new MimeBodyPart();
-            String filesource = "file://" + root + "/Robofission/SampleFile.txt";
-            String fileName = "sampleimage.jpg";
-            File file =new File(filesource);
-            //System.out.println("message sent");
-            DataSource source = new FileDataSource("file://" + root + "/Robofission/sampleimage.jpg");
+            MimeBodyPart messageBodyPart = new MimeBodyPart();
+            //File att = new File(new File(attachmentPath), attachmentName);
+           // messageBodyPart.attachFile(att);
+            //messageBodyPart.attachFile("file://" + root + "/Robofission/SampleFile.txt");
+            //messageBodyPart.setFileName("SampleFile.txt");
+           // messageBodyPart.setText("fuck");
+            DataSource source = new FileDataSource(attachmentPath);
             messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName(fileName);
+            messageBodyPart.setFileName(attachmentName);
             multipart.addBodyPart(messageBodyPart);
 
-
+            // Send the complete message parts
             message.setContent(multipart);
+
+            //send message
             Transport.send(message);
 
+            System.out.println("message sent successfully");
+
         }catch(Exception e){
-           // Toast.makeText(co ,"Mail not Send", Toast.LENGTH_SHORT).show();
             System.out.println("message not sent");
             throw new RuntimeException(e);
 
@@ -101,42 +97,6 @@ public class GMailSender extends javax.mail.Authenticator {
         }
     }
 
-    public class ByteArrayDataSource implements DataSource {
-        private byte[] data;
-        private String type;
 
-        public ByteArrayDataSource(byte[] data, String type) {
-            super();
-            this.data = data;
-            this.type = type;
-        }
-
-        public ByteArrayDataSource(byte[] data) {
-            super();
-            this.data = data;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        public String getContentType() {
-            if (type == null)
-                return "application/octet-stream";
-            else
-                return type;
-        }
-
-        public InputStream getInputStream() throws IOException {
-            return new ByteArrayInputStream(data);
-        }
-
-        public String getName() {
-            return "ByteArrayDataSource";
-        }
-        public OutputStream getOutputStream() throws IOException {
-            throw new IOException("Not Supported");
-        }
-    }
 }
 

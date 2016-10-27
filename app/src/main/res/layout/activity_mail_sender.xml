@@ -8,5 +8,15 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.w7.robofission_labs.MailSenderActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:padding="1dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Order Requesting"
+        android:textSize="36sp"
+        android:textColor="#F57C00"/>
 
 </RelativeLayout>

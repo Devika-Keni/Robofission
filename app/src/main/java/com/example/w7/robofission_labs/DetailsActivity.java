@@ -51,7 +51,7 @@ public class DetailsActivity extends AppCompatActivity {
         output1.setText(text);
     }
     public void sendemail(View view){
-        if(isNetworkAvailable()){
+        /*if(isNetworkAvailable()){
             Intent email = new Intent(Intent.ACTION_SEND);
             email.setType("text/plain");
             email.putExtra(Intent.EXTRA_EMAIL, new String[]{"suhas@robofissionlabs.in"});
@@ -59,7 +59,10 @@ public class DetailsActivity extends AppCompatActivity {
             //email.putExtra(Intent.EXTRA_TEXT, "message");
             email.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + root + "/Robofission/samplefile.txt"));
             startActivity(Intent.createChooser(email, "Choose Email App:"));
-        }
+        }*/
+        Intent intent= new Intent(this,MailSenderActivity.class);
+        intent.putExtra("filename", filename);
+        startActivity(intent);
 
     }
     private boolean isNetworkAvailable() {

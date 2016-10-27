@@ -24,6 +24,7 @@ public class MainActivity1 extends Activity {
     ImageView imageView;
     static final int CAM_REQUEST = 1;
     String root = Environment.getExternalStorageDirectory().toString();
+    String fname = "sampleimage.jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +85,7 @@ public class MainActivity1 extends Activity {
         email.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + root + "/Robofission/sampleimage.jpg" ));
         startActivity(Intent.createChooser(email, "Choose Email App:"));*/
         Intent intent= new Intent(this,MailSenderActivity.class);
+        intent.putExtra("filename", fname);
         startActivity(intent);
 
     }
